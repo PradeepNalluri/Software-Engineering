@@ -51,10 +51,33 @@ int main(){
   //Getting Input
   printf("Please Enter the number of numbers you want to enter: ");
   int num_num;
-  scanf("%d",&num_num);
-  int i=0;
   int flag=0;
   int flag1=0;
+  char num_char[50];
+  while(1){
+    scanf("%s",num_char);
+    for(int j=0;j<strlen(num_char);j++){
+      if(48>(int)num_char[j] || (int)num_char[j]>57){
+        if((int)num_char[j]!=10){
+            flag=1;
+        }
+      }
+    }
+    if(strcmp("\n",num_char)==0){
+      flag1=1;
+    }
+    else if(flag==0){
+      num_num=atoi(num_char);
+      break;
+    }else{
+      printf("Enter a valid number\n");
+      flag=0;
+      printf("Please Enter the number of numbers you want to enter: ");
+    }
+  }
+  int i=0;
+  flag=0;
+  flag1=0;
   float num_arr[num_num];
   float temp;
   char number[50];
