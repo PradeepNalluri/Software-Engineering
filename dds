@@ -1,0 +1,22 @@
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main(){
+  printf("Please Enter the number of numbers you want to enter: ");
+  int num_num;
+  scanf("%d",&num_num);
+
+  int i;
+  for(i=0;i<num_num;i++){
+    char c[100];
+    fgets(c, 100, stdin);
+    for(i=0;i<strlen(c);i++){
+      if((int)c[i]>48 && (int)c[i]<57){
+        printf("Not correct\n");
+      }
+    }
+  }
+}
