@@ -99,13 +99,8 @@ int main(){
         if((int)number[j]==46){
           flagfd+=1;
         }
-        if((int)number[j]!=10 ){
-          if((int)number[j]!=46)
-            flag=1;
-          if ((int)number[j]!=45)
-            flag=1;
-          else if (flagfd>1 || flagfm>1)
-            flag=1;
+        if((int)number[j]!=10 && (int)number[j]!=46 && (int)number[j]!=45){
+          flag=1;
         }
       }
     }
@@ -148,9 +143,6 @@ int main(){
     sorted_arr[i]=num_arr[i];
   }
   mergeSort(sorted_arr,0,num_num-1);
-  for(i=0;i<num_num;i++){
-    printf("%f\n",sorted_arr[i]);
-  }
   float median;
   if(num_num%2==0){
     median=(sorted_arr[num_num/2]+sorted_arr[(num_num/2)-1])/2;
