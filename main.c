@@ -6,7 +6,7 @@ void merge(float arr[], int left, int middle, int right){
     int i, j, k;
     int n1 = middle - left + 1;
     int n2 =  right - middle;
-    int L[n1], R[n2];
+    float L[n1], R[n2];
     for (i = 0; i < n1; i++)
         L[i] = arr[left + i];
     for (j = 0; j < n2; j++)
@@ -83,14 +83,27 @@ int main(){
   char number[50];
   char zero[50];
   sprintf(zero, "%d",0);
+  int flagfd,flagfm;
   for(i=0;i<num_num;i++){
     if(flag1==0)
       printf("Please enter element number %d: ",i+1);
       flag1=0;
+    flagfd=0;
+    flagfm=0;
     fgets(number, 50, stdin);
     for(int j=0;j<strlen(number);j++){
       if(48>(int)number[j] || (int)number[j]>57){
-        if((int)number[j]!=10){
+        if((int)number[j]==45){
+          flagfm+=1;
+        }
+        if((int)number[j]==46){
+          flagfd+=1;
+        }
+        // printf("%d\n",flagfd);
+        if((int)number[j]!=10 ){
+          if((int)number[j]!=46 && (int)number[j]!=45)
+            flag=1;
+          else if (flagfd>1 || flagfm>1)
             flag=1;
         }
       }
@@ -134,6 +147,9 @@ int main(){
     sorted_arr[i]=num_arr[i];
   }
   mergeSort(sorted_arr,0,num_num-1);
+  for(i=0;i<num_num;i++){
+    printf("%f\n",sorted_arr[i]);
+  }
   float median;
   if(num_num%2==0){
     median=(sorted_arr[num_num/2]+sorted_arr[(num_num/2)-1])/2;
