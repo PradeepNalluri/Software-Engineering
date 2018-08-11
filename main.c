@@ -99,9 +99,10 @@ int main(){
         if((int)number[j]==46){
           flagfd+=1;
         }
-        // printf("%d\n",flagfd);
         if((int)number[j]!=10 ){
-          if((int)number[j]!=46 && (int)number[j]!=45)
+          if((int)number[j]!=46)
+            flag=1;
+          if ((int)number[j]!=45)
             flag=1;
           else if (flagfd>1 || flagfm>1)
             flag=1;
