@@ -7,8 +7,16 @@ int main(int argc, char const *argv[]) {
   FILE *inputf;
   inputf = fopen(filename,"r");
   if(inputf==NULL){
-   printf("\"%s\" File NOT FOUND!\n",filename);
+   printf("\"%s\" File NOT FOUND! Please enter a valid file name\n",filename);
    exit(1);
  }
+ char c;
+ int count=0;
+ while ((c = fgetc(inputf)) != EOF) {
+   if(c=='\n'){
+     count+=1;
+   }
+}
+  printf("The number of lines in the file are: %d\n",count);
   return 0;
 }
