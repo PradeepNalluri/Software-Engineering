@@ -26,8 +26,8 @@ int main(int argc, char const *argv[]) {
      count2+=1;
    }
 }
-  printf("The number of lines in the file which are not blank are: %d\n",count);
-  printf("The number of lines in the file which are blank are: %d\n",count3);
+  //printf("The number of lines in the file which are not blank are: %d\n",count);
+  //printf("The number of lines in the file which are blank are: %d\n",count3);
   printf("Total number of lines in the file are: %d\n",count+count3);
   return 0;
 }
