@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
+//Proxy merge
 void merge(float arr[], int left, int middle, int right){
     int i, j, k;
     int n1 = middle - left + 1;
@@ -36,6 +37,8 @@ while (i < n1){
         k++;
     }
 }
+//proxy
+//Proxy mergesort
 void mergeSort(float arr[], int left, int right){
     if (left < right){
         int middle = left+(right-left)/2;
@@ -45,8 +48,8 @@ void mergeSort(float arr[], int left, int right){
         merge(arr, left, middle, right);
     }
 }
-
-
+//proxy
+//Proxy main
 int main(){
   //Getting Input
   printf("Please Enter the number of numbers you want to enter: ");
@@ -151,3 +154,4 @@ int main(){
   }
   printf("Median: %f\n",median);
 }
+//proxy
