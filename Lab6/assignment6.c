@@ -3,50 +3,7 @@
 #include<string.h>
 #include<math.h>
 #define pi 3.14
-//proxy:gama
-float gama(float n){
-  float gama_val=0.0;
-  if(n==1){
-    return 1.0;
-  }
-  else if(n==0.5){
-    return sqrt(pi);
-  }
-  else{
-    gama_val= (float)(n-1)*gama(n-1);
-  }
-  return gama_val;
-}
-//proxy:simpson_rule
-float simpson_rule(float* y_values,float t,int n,int tails){
-    float delta=t/n;
-    float sum_odd=0;
-    float sum_even=0;
-    for(int i=1;i<n-1;i+=2){
-      sum_odd+=y_values[i];
-    }
-    for(int i=1;i<n-1;i+=2){
-      sum_even+=y_values[i];
-    }
-    float right=y_values[0]+y_values[n-1]+(4*sum_odd)+(2*sum_even);
-    float left=delta/3.0;
-    if(tails==1){
-      return left*right+0.5;
-    }
-    else{
-      return 2*left*right;
-    }
-}
-//proxy:func_cal
-float func_cal(float t,int n){
-  float gamaby2=gama(n/2.0);
-  float gamapby2=gama((n+1)/2.0);
-  float left=gamapby2/(gamaby2*sqrt(n*pi));
-  float denm=pow(1+((t*t)/n),(n+1)/2.0);
-  float right=1.0/(denm);
-  return left*right;
-}
-//proxy:isfloat
+
 float isfloat(char* number){
    int flagfd=0;int flagfm=0;int flag=0;int flag1=0;int temp=0;
   for(int j=0;j<strlen(number);j++){
@@ -74,7 +31,6 @@ float isfloat(char* number){
       return 0;
     }
 }
-
 int isint(char* num_char){
   int num_num;
   int flag=0;
@@ -97,9 +53,46 @@ int isint(char* num_char){
       return 0;
     }
 }
-//proxy
-
-//proxy:main
+float gama(float n){
+  float gama_val=0.0;
+  if(n==1){
+    return 1.0;
+  }
+  else if(n==0.5){
+    return sqrt(pi);
+  }
+  else{
+    gama_val= (float)(n-1)*gama(n-1);
+  }
+  return gama_val;
+}
+float simpson_rule(float* y_values,float t,int n,int tails){
+    float delta=t/n;
+    float sum_odd=0;
+    float sum_even=0;
+    for(int i=1;i<n-1;i+=2){
+      sum_odd+=y_values[i];
+    }
+    for(int i=2;i<n-1;i+=2){
+      sum_even+=y_values[i];
+    }
+    float right=y_values[0]+y_values[n-1]+(4*sum_odd)+(2*sum_even);
+    float left=delta/3.0;
+    if(tails==1){
+      return left*right+0.5;
+    }
+    else{
+      return 2*left*right;
+    }
+}
+float func_cal(float t,int n){
+  float gamaby2=gama(n/2.0);
+  float gamapby2=gama((n+1)/2.0);
+  float left=gamapby2/(gamaby2*sqrt(n*pi));
+  float denm=pow(1+((t*t)/n),(n+1)/2.0);
+  float right=1.0/(denm);
+  return left*right;
+}
 int main(){
     char num_tests[5];
     int num_test=0;
@@ -129,7 +122,7 @@ int main(){
       }
       t_val=atof(t_string);
       while(1){
-        printf("Enter the number of test cases:");
+        printf("Enter the number of Degrees of Freedom:");
         scanf("%s",degrees_str);
         if(isint(degrees_str)){
           degrees=isint(degrees_str);
@@ -149,7 +142,6 @@ int main(){
         scanf("%d",&tails);
       }
     }
-    //printf("%f\t%d\t%d\t\n",t,degrees,tails);
     int count=1;
     int flag=0;
     float t_old;
