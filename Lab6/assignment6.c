@@ -101,42 +101,42 @@ int isint(char* num_char){
 
 //proxy:main
 int main(){
-  char num_tests[5];
-  int num_test=0;
-  float t_val;
-  int degrees,tails;
-  char t_string[5];
-  char degrees_str[5];
-  int n=4;
-  while(1){
-    printf("Enter the number of test cases:");
-    scanf("%s",num_tests);
-    if(isint(num_tests)){
-      num_test=isint(num_tests);
-      break;
-    }
-    printf("Enter a valid number.\n");
-}
-for(int num=0;num<num_test;num++){
-    n=4;
-    printf("For test case %d\n",num+1);
-    printf("Enter the value of t:");
-    scanf("%s",t_string);
-    while(!isfloat(t_string)){
-      printf("Enter a valid number.\n");
-      printf("Enter the t value:");
-      scanf("%s",t_string);
-    }
-    t_val=atof(t_string);
+    char num_tests[5];
+    int num_test=0;
+    float t_val;
+    int degrees,tails;
+    char t_string[5];
+    char degrees_str[5];
+    int n=4;
     while(1){
       printf("Enter the number of test cases:");
-      scanf("%s",degrees_str);
-      if(isint(degrees_str)){
-        degrees=isint(degrees_str);
+      scanf("%s",num_tests);
+      if(isint(num_tests)){
+        num_test=isint(num_tests);
         break;
       }
       printf("Enter a valid number.\n");
-  }
+    }
+    for(int num=0;num<num_test;num++){
+      n=4;
+      printf("For test case %d\n",num+1);
+      printf("Enter the value of t:");
+      scanf("%s",t_string);
+      while(!isfloat(t_string)){
+        printf("Enter a valid number.\n");
+        printf("Enter the t value:");
+        scanf("%s",t_string);
+      }
+      t_val=atof(t_string);
+      while(1){
+        printf("Enter the number of test cases:");
+        scanf("%s",degrees_str);
+        if(isint(degrees_str)){
+          degrees=isint(degrees_str);
+          break;
+        }
+        printf("Enter a valid number.\n");
+    }
     printf("Enter the number of tails:");
     scanf("%d",&tails);
     while(1){
@@ -171,11 +171,11 @@ for(int num=0;num<num_test;num++){
       }
       else{
         t_old=t_fval;
-        flag++;
-        count++;
+        flag+=1;
+        count+=1;
         n=n*count;
       }
     }
-    printf("%f\n",t_fval );
-}
+    printf("The final value is: %f\n",t_fval );
+  }
 }
