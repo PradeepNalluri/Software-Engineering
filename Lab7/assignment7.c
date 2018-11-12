@@ -237,14 +237,14 @@ printf("Beta zero is %f\n",betazero);
 float range=0;
 float expected=0;
 for(int i=0;i<3;i++){
-  printf("For the %dth unregrate value %f :\n",i+1,raw_estimates[i]);
+  printf("For the unregrate %d value %f :\n",i+1,raw_estimates[i]);
   float std=std2(loce,da,num_train,betazero,betaone,raw_estimates[i]);
   for(int j=0;j<2;j++){
     range=tval[j]*std;
     printf("range is %f\n",range);
     expected=(betaone*raw_estimates[i]+betazero);
-    printf("\tfor the %f confidence interval the LPI is %f\n",ci[j]*100,expected-range);
-    printf("\tfor the %f confidence interval the UPI is %f\n",ci[j]*100,range+expected);
+    printf("\tfor the %f percent confidence interval the LPI is %f\n",ci[j]*100,expected-range);
+    printf("\tfor the %f percent confidence interval the UPI is %f\n",ci[j]*100,range+expected);
   }
 }
 }
