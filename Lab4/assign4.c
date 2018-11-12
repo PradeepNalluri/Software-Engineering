@@ -130,7 +130,7 @@ while(1){
     y[count]=atof(str);
     count++;
   }
-  Else{
+  else{
     printf("Enter a valid number\n");
   }
   if(count==length){
