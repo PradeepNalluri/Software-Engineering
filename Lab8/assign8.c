@@ -103,7 +103,7 @@ float gama(float n){
 }
 //proxy
 
-//Proxy simpson_rule_rule
+//Proxy simpson_rule
 float simpson_rule(int n,float delta,int tails,float* y_values){
     float sum_odd=0;
     float sum_even=0;
@@ -128,38 +128,42 @@ float simpson_rule(int n,float delta,int tails,float* y_values){
 int main()
 {
  int i=0,n=0,c=0;
-char number_1[5],number_2[5];
+char s1[5],s2[5];
 
-printf("Enter the number of numbers you want : ");
+printf("Please enter the number of entries you want : ");
 scanf("%d",&n);
-float a[n],b[n],beta0=0,beta1=0,meanofx=0,meanofy=0;
+float a[n],b[n],b0=0,b1=0,meanx=0,meany=0;
 for(;;)
-{ printf("Enter the values of X%d :",c);
-  scanf("%s",number_1);
-  printf("%s\n",number_1);
-  if(!isint(number_1)){
-    printf("Enter a valid number\n");
-   }
-  else{
-    a[c]=atof(number_1);
-    c++;
-   }
-  if(c==n){
-   break;
-  }
-}
-c=0;
-
-while (1) {
-  printf("Enter the values of Y%d :",c);
-  scanf("%s",number_2);
-  if(!isint(number_2))
+{ printf("Please enter the values X%d :",c);
+  scanf("%s",s1);
+  if(!isint(s1))
    {
-    printf("Enter a valid number\n");
+    printf("Please enter only the numericals\n\n");
    }
   else
    {
-    b[c]=atof(number_2);
+    a[c]=atof(s1);
+    c++;
+   }
+  if(c==n)
+  {
+   break;
+  }
+}
+
+printf("\n\n");
+c=0;
+
+for(;;)
+{ printf("Please enter the values of Y%d :",c);
+  scanf("%s",s2);
+  if(!isint(s2))
+   {
+    printf("Please enter only the numericals\n\n");
+   }
+  else
+   {
+    b[c]=atof(s2);
     c++;
    }
   if(c==n)
@@ -170,12 +174,12 @@ while (1) {
 
 //printf("dfgdf\n");
 
-meanofx=mean(a,n);// modified
-meanofy=mean(b,n);// modified
+meanx=mean(a,n);// modified
+meany=mean(b,n);// modified
 
-beta1=beta_1(a,b,n,meanofy,meanofy);
-beta0=meanofy-(beta1*meanofx);
-//printf("beta_1-%f",beta1);
+b1=beta_1(a,b,n,meanx,meany);
+b0=meany-(b1*meanx);
+//printf("beta_1-%f",b1);
 int dof=n-1;
 float td=0;
 float r=0,stdx=0,stdy=0;
@@ -183,9 +187,9 @@ float r=0,stdx=0,stdy=0;
 r= pearson(a,b,n);
 float std1=deviation_std(a,n);
 float std2=deviation_std(b,n);
-//r=beta1*(std2/(float)std1);
+//r=b1*(std2/(float)std1);
 td=(float)(fabs(r)*sqrt(dof-2.0))/(float)(sqrt(1-pow(r,2.0)));
-int counter=1;  // modified
+int cou=1;  // modified
 int N=4;
 float v=0,ov=0;
 while(1)
@@ -214,8 +218,8 @@ f[i] = (gama((dof+1)/(float)2))/(gama(dof/(float)2) * pow((dof*pi),0.5) * pow((1
   else
    {
      ov=v;
-     counter++;// modified
-     N=N*counter;// modified
+     cou++;// modified
+     N=N*cou;// modified
    }
 }
 
