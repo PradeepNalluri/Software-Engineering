@@ -124,7 +124,7 @@ float simpson_rule(int n,float delta,int tails,float* y_values){
 }
 // Proxy
 
-// proxy-main
+//Proxy main
 int main(){
  int i=0,n=0,c=0;
 char number1[5],number2[5];
@@ -166,19 +166,18 @@ for(;;)
     c++;
    }
   if(c==n)
-  {//printf("dfgdf\n");
+  {
    break;
   }
 }
 
-//printf("dfgdf\n");
 
-x_mean=mean(a,n);// modified
-y_mean=mean(b,n);// modified
+
+x_mean=mean(a,n);
+y_mean=mean(b,n);
 
 beta1=beta_1(a,b,n,x_mean,y_mean);
 beta0=y_mean-(beta1*x_mean);
-//printf("beta_1-%f",b1);
 int dof=n-1;
 float td=0;
 float r=0,stdx=0,stdy=0;
@@ -186,14 +185,12 @@ float r=0,stdx=0,stdy=0;
 r= pearson(a,b,n);
 float std1=deviation_std(a,n);
 float std2=deviation_std(b,n);
-//r=b1*(std2/(float)std1);
 td=(float)(fabs(r)*sqrt(dof-2.0))/(float)(sqrt(1-pow(r,2.0)));
-int counter=1;  // modified
+int counter=1;
 int N=4;
 float v=0,ov=0;
 while(1)
 {
- // printf("dfgdf\n");
   float t[N+1],f[N+1];
 
   t[0]=0;
@@ -208,8 +205,7 @@ f[i] = (gama((dof+1)/(float)2))/(gama(dof/(float)2) * pow((dof*pi),0.5) * pow((1
   }
 
   v=simpson_rule(N,td,2,f);
-  if(fabs(v-ov)<0.001)
-   { //printf("\nSanketh\n");
+  if(fabs(v-ov)<0.001){
      printf("\nProbability value for t given: %f\n ",v);
      break;
    }
@@ -217,8 +213,8 @@ f[i] = (gama((dof+1)/(float)2))/(gama(dof/(float)2) * pow((dof*pi),0.5) * pow((1
   else
    {
      ov=v;
-     counter++;// modified
-     N=N*counter;// modified
+     counter++;
+     N=N*counter;
    }
 }
 
@@ -236,4 +232,4 @@ else
    printf("N\n");
  }
 }
-// Proxy
+//proxy
