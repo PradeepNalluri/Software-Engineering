@@ -125,24 +125,23 @@ float simpson_rule(int n,float delta,int tails,float* y_values){
 // Proxy
 
 // proxy-main
-int main()
-{
+int main(){
  int i=0,n=0,c=0;
-char s1[5],s2[5];
+char number1[5],number2[5];
 
-printf("Please enter the number of entries you want : ");
+printf("Enter the number of Numbers: ");
 scanf("%d",&n);
-float a[n],b[n],b0=0,b1=0,meanx=0,meany=0;
-for(;;)
-{ printf("Please enter the values X%d :",c);
-  scanf("%s",s1);
-  if(!isint(s1))
+float a[n],b[n],beta0=0,beta1=0,x_mean=0,y_mean=0;
+for(;;){
+   printf("Enter the value of X%d :",c);
+  scanf("%s",number1);
+  if(!isint(number1))
    {
-    printf("Please enter only the numericals\n\n");
+    printf("Enter a valid Number\n");
    }
   else
    {
-    a[c]=atof(s1);
+    a[c]=atof(number1);
     c++;
    }
   if(c==n)
@@ -155,15 +154,15 @@ printf("\n\n");
 c=0;
 
 for(;;)
-{ printf("Please enter the values of Y%d :",c);
-  scanf("%s",s2);
-  if(!isint(s2))
+{ printf("Enter the value of Y%d :",c);
+  scanf("%s",number2);
+  if(!isint(number2))
    {
-    printf("Please enter only the numericals\n\n");
+    printf("Enter a valid Number\n");
    }
   else
    {
-    b[c]=atof(s2);
+    b[c]=atof(number2);
     c++;
    }
   if(c==n)
@@ -174,11 +173,11 @@ for(;;)
 
 //printf("dfgdf\n");
 
-meanx=mean(a,n);// modified
-meany=mean(b,n);// modified
+x_mean=mean(a,n);// modified
+y_mean=mean(b,n);// modified
 
-b1=beta_1(a,b,n,meanx,meany);
-b0=meany-(b1*meanx);
+beta1=beta_1(a,b,n,x_mean,y_mean);
+beta0=y_mean-(beta1*x_mean);
 //printf("beta_1-%f",b1);
 int dof=n-1;
 float td=0;
@@ -189,7 +188,7 @@ float std1=deviation_std(a,n);
 float std2=deviation_std(b,n);
 //r=b1*(std2/(float)std1);
 td=(float)(fabs(r)*sqrt(dof-2.0))/(float)(sqrt(1-pow(r,2.0)));
-int cou=1;  // modified
+int counter=1;  // modified
 int N=4;
 float v=0,ov=0;
 while(1)
@@ -211,30 +210,30 @@ f[i] = (gama((dof+1)/(float)2))/(gama(dof/(float)2) * pow((dof*pi),0.5) * pow((1
   v=simpson_rule(N,td,2,f);
   if(fabs(v-ov)<0.001)
    { //printf("\nSanketh\n");
-     printf("\nThe Probability value for the given t is : %f\n ",v);
+     printf("\nProbability value for t given: %f\n ",v);
      break;
    }
 
   else
    {
      ov=v;
-     cou++;// modified
-     N=N*cou;// modified
+     counter++;// modified
+     N=N*counter;// modified
    }
 }
 
 float sig=1-v;
-printf("\nThe r*r value is %f\n",r*r);
-printf("\nThe value of sig is %f\n",sig);
+printf("\nr^2:%f\n",r*r);
+printf("\nsig:%f\n",sig);
 
 if((r*r)>0.5 && sig<0.1)
  {
-   printf("\n\nIt is Y\n\n");
+   printf("Y\n");
  }
 
 else
  {
-   printf("\n\nIt is N\n\n");
+   printf("N\n");
  }
 }
 // Proxy
